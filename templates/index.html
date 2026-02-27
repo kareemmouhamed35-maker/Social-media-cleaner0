@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Cleaner Pro 2026</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- شاشة البداية -->
+        <div id="start-screen" class="screen active">
+            <div class="logo">
+                <i class="fas fa-broom"></i>
+                <h1>Social Media Cleaner</h1>
+                <span class="badge">PRO 2026</span>
+            </div>
+            
+            <p class="subtitle">نظف حساباتك من الريبوستات واللايكات بضغطة زر</p>
+            
+            <div class="platforms-grid" id="platforms-grid">
+                <!-- المنصات هتتحمل هنا بالجافاسكريبت -->
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <span>حذف حتى 10,000 عنصر</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>آمن 100%</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-rocket"></i>
+                    <span>سرعة خيالية</span>
+                </div>
+            </div>
+            
+            <div class="footer-credit">
+                created by Kareem Mohamed
+            </div>
+        </div>
+
+        <!-- شاشة استخراج الجلسة -->
+        <div id="session-guide-screen" class="screen">
+            <button class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-right"></i> رجوع
+            </button>
+            
+            <div class="platform-header" id="session-platform-header">
+                <!-- بيانات المنصة هنا -->
+            </div>
+            
+            <div class="guide-container">
+                <div class="guide-tabs">
+                    <button class="tab-btn active" onclick="switchTab('quick')">
+                        <i class="fas fa-bolt"></i> سريع
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('manual')">
+                        <i class="fas fa-hands"></i> يدوي
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('extensions')">
+                        <i class="fas fa-puzzle-piece"></i> إضافات
+                    </button>
+                </div>
+                
+                <div id="quick-tab" class="tab-content active">
+                    <div class="quick-actions">
+                        <button class="action-btn primary" onclick="openDirectLink()">
+                            <i class="fas fa-external-link-alt"></i>
+                            افتح الرابط المباشر
+                        </button>
+                        
+                        <button class="action-btn success" onclick="copyQuickScript()">
+                            <i class="fas fa-copy"></i>
+                            انسخ الكوكيز تلقائياً
+                        </button>
+                        
+                        <div class="info-box">
+                            <i class="fas fa-info-circle"></i>
+                            <p>بعد فتح الرابط، اضغط على الزر "انسخ الكوكيز" وهتتنسخ تلقائياً</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="manual-tab" class="tab-content">
+                    <div class="steps-container" id="steps-container">
+                        <!-- الخطوات هتتحمل هنا -->
+                    </div>
+                    
+                    <div class="quick-links" id="quick-links">
+                        <!-- الروابط السريعة -->
+                    </div>
+                </div>
+                
+                <div id="extensions-tab" class="tab-content">
+                    <div class="extensions-grid" id="extensions-grid">
+                        <!-- الإضافات هتتحمل هنا -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cookies-input-container">
+                <label for="session-cookies">
+                    <i class="fas fa-key"></i>
+                    الصق الكوكيز هنا
+                </label>
+                <textarea id="session-cookies" placeholder="الصق الكوكيز بعد النسخ..." rows="4"></textarea>
+                
+                <div class="action-buttons">
+                    <button class="verify-btn" onclick="verifySessionCookies()">
+                        <i class="fas fa-check-circle"></i>
+                        تحقق من الكوكيز
+                    </button>
+                    <button class="paste-btn" onclick="pasteCookies()">
+                        <i class="fas fa-paste"></i>
+                        لصق
+                    </button>
+                    <button class="clear-btn" onclick="clearCookies()">
+                        <i class="fas fa-eraser"></i>
+                        مسح
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- شاشة اختيار الإجراء -->
+        <div id="actions-screen" class="screen">
+            <button class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-right"></i> رجوع
+            </button>
+            
+            <div class="user-info" id="user-info">
+                <!-- معلومات المستخدم بعد التحقق -->
+            </div>
+            
+            <h3>اختر الإجراء المطلوب</h3>
+            
+            <div class="actions-grid">
+                <div class="action-card" data-action="reposts" onclick="selectAction('reposts')">
+                    <i class="fas fa-retweet"></i>
+                    <span>حذف الريبوستات</span>
+                    <small>إعادة المشاركات</small>
+                </div>
+                
+                <div class="action-card" data-action="likes" onclick="selectAction('likes')">
+                    <i class="fas fa-heart"></i>
+                    <span>حذف اللايكات</span>
+                    <small>الإعجابات</small>
+                </div>
+                
+                <div class="action-card" data-action="comments" onclick="selectAction('comments')">
+                    <i class="fas fa-comment"></i>
+                    <span>حذف التعليقات</span>
+                    <small>اختيار ما تريد</small>
+                </div>
+                
+                <div class="action-card" data-action="saved" onclick="selectAction('saved')">
+                    <i class="fas fa-bookmark"></i>
+                    <span>حذف المحفوظات</span>
+                    <small>المنشورات المحفوظة</small>
+                </div>
+            </div>
+            
+            <div class="stats-box" id="stats-box" style="display: none;">
+                <!-- إحصائيات سريعة -->
+            </div>
+        </div>
+
+        <!-- شاشة اختيار العناصر (للكومنتات) -->
+        <div id="selection-screen" class="screen">
+            <button class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-right"></i> رجوع
+            </button>
+            
+            <div class="selection-header">
+                <h3>اختر التعليقات المراد حذفها</h3>
+                <span class="count-badge" id="selected-count">0</span>
+            </div>
+            
+            <div class="items-list" id="items-list">
+                <!-- العناصر هتتحمل هنا -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    جاري تحميل التعليقات...
+                </div>
+            </div>
+            
+            <div class="selection-footer">
+                <div class="selection-actions">
+                    <button class="select-all-btn" onclick="toggleSelectAll()">
+                        <i class="fas fa-check-double"></i>
+                        تحديد الكل
+                    </button>
+                    
+                    <button class="delete-selected-btn" onclick="deleteSelected()">
+                        <i class="fas fa-trash-alt"></i>
+                        حذف المحدد (<span id="selected-count-btn">0</span>)
+                    </button>
+                </div>
+                
+                <div class="progress-info" id="selection-progress" style="display: none;">
+                    <span>تم تحميل <span id="loaded-count">0</span> تعليق</span>
+                    <button class="load-more-btn" onclick="loadMoreItems()">تحميل المزيد</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- شاشة الحذف والتقدم -->
+        <div id="progress-screen" class="screen">
+            <div class="progress-header">
+                <i class="fas fa-trash-alt"></i>
+                <h3>جاري تنظيف حسابك</h3>
+            </div>
+            
+            <div class="progress-stats">
+                <div class="stat-item">
+                    <span class="stat-label">الإجمالي</span>
+                    <span class="stat-value" id="total-items">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">تم الحذف</span>
+                    <span class="stat-value success" id="deleted-items">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">فشل</span>
+                    <span class="stat-value danger" id="failed-items">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">المتبقي</span>
+                    <span class="stat-value" id="remaining-items">0</span>
+                </div>
+            </div>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-text" id="progress-text">0%</div>
+            </div>
+            
+            <div class="speed-info">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>سرعة الحذف: <span id="delete-speed">0</span> عنصر/ثانية</span>
+            </div>
+            
+            <div class="log-container" id="log-container">
+                <div class="log-header">
+                    <span>سجل العمليات</span>
+                    <button class="clear-log-btn" onclick="clearLog()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="log-messages" id="log-messages">
+                    <!-- رسائل السجل هنا -->
+                </div>
+            </div>
+            
+            <div class="progress-actions">
+                <button class="pause-btn" id="pause-btn" onclick="togglePause()">
+                    <i class="fas fa-pause"></i>
+                    إيقاف مؤقت
+                </button>
+                
+                <button class="stop-btn" id="stop-btn" onclick="stopDeleting()">
+                    <i class="fas fa-stop"></i>
+                    إيقاف
+                </button>
+                
+                <button class="finish-btn" id="finish-btn" onclick="finish()" style="display: none;">
+                    <i class="fas fa-check"></i>
+                    إنهاء
+                </button>
+            </div>
+            
+            <div class="warning-message" id="rate-limit-warning" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                تم الوصول لحد الطلبات المسموح بها، جاري التباطؤ التلقائي...
+            </div>
+        </div>
+
+        <!-- شاشة النتائج النهائية -->
+        <div id="results-screen" class="screen">
+            <div class="results-header success">
+                <i class="fas fa-check-circle"></i>
+                <h2>تمت العملية بنجاح!</h2>
+            </div>
+            
+            <div class="results-summary">
+                <div class="result-card total">
+                    <i class="fas fa-list"></i>
+                    <span class="result-value" id="result-total">0</span>
+                    <span class="result-label">إجمالي العناصر</span>
+                </div>
+                
+                <div class="result-card success">
+                    <i class="fas fa-check"></i>
+                    <span class="result-value" id="result-success">0</span>
+                    <span class="result-label">تم الحذف</span>
+                </div>
+                
+                <div class="result-card failed">
+                    <i class="fas fa-times"></i>
+                    <span class="result-value" id="result-failed">0</span>
+                    <span class="result-label">فشل</span>
+                </div>
+                
+                <div class="result-card time">
+                    <i class="fas fa-clock"></i>
+                    <span class="result-value" id="result-time">0</span>
+                    <span class="result-label">الوقت المستغرق</span>
+                </div>
+            </div>
+            
+            <div class="results-details" id="failed-items-list" style="display: none;">
+                <h4>العناصر التي فشل حذفها:</h4>
+                <div class="failed-items-container"></div>
+            </div>
+            
+            <div class="results-actions">
+                <button class="primary-btn" onclick="startNew()">
+                    <i class="fas fa-redo"></i>
+                    بدء عملية جديدة
+                </button>
+                
+                <button class="secondary-btn" onclick="exportReport()">
+                    <i class="fas fa-download"></i>
+                    تصدير التقرير
+                </button>
+                
+                <button class="home-btn" onclick="goHome()">
+                    <i class="fas fa-home"></i>
+                    الرئيسية
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3>تأكيد العملية</h3>
+            <p id="confirm-message"></p>
+            <div class="modal-actions">
+                <button class="confirm-yes" onclick="confirmAction(true)">نعم، متأكد</button>
+                <button class="confirm-no" onclick="confirmAction(false)">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
